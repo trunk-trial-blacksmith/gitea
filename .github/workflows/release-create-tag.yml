@@ -17,7 +17,7 @@ jobs:
       name: release-signing
       deployment: false
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
         with:
           token: ${{ secrets.RELEASE_TOKEN }}
       - uses: crazy-max/ghaction-import-gpg@2dc316deee8e90f13e1a351ab510b4d5bc0c82cd # v7.0.0

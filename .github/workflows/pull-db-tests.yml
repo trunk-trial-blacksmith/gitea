@@ -45,7 +45,7 @@ jobs:
         ports:
           - "9000:9000"
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - uses: ./.github/actions/pgsql-shard
         with:
@@ -83,7 +83,7 @@ jobs:
         ports:
           - "9000:9000"
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - uses: ./.github/actions/pgsql-shard
         with:
@@ -95,7 +95,7 @@ jobs:
     needs: files-changed
     runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - run: make deps-backend
       - run: make backend
@@ -154,7 +154,7 @@ jobs:
         ports:
           - 10000:10000
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - name: Add hosts to /etc/hosts
         run: '[ -e "/.dockerenv" ] || [ -e "/run/.containerenv" ] || echo "127.0.0.1 minio devstoreaccount1.azurite.local mysql elasticsearch meilisearch smtpimap" | sudo tee -a /etc/hosts'
@@ -203,7 +203,7 @@ jobs:
           - "587:587"
           - "993:993"
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - name: Add hosts to /etc/hosts
         run: '[ -e "/.dockerenv" ] || [ -e "/run/.containerenv" ] || echo "127.0.0.1 mysql elasticsearch smtpimap" | sudo tee -a /etc/hosts'
@@ -235,7 +235,7 @@ jobs:
         ports:
           - 10000:10000
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - name: Add hosts to /etc/hosts
         run: '[ -e "/.dockerenv" ] || [ -e "/run/.containerenv" ] || echo "127.0.0.1 mssql devstoreaccount1.azurite.local" | sudo tee -a /etc/hosts'

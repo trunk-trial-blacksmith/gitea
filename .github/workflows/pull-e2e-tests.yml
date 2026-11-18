@@ -20,7 +20,7 @@ jobs:
     needs: files-changed
     runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - uses: ./.github/actions/node-setup
       - run: make deps-frontend

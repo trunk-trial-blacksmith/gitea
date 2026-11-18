@@ -45,7 +45,7 @@ jobs:
       contents: read
       id-token: write
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
         with:
           ref: ${{ matrix.branch }}
       # fetch all commits instead of only the last as some branches are long lived and could have many between versions
@@ -109,7 +109,7 @@ jobs:
       contents: read
       packages: write # to publish to ghcr.io
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
         with:
           ref: ${{ matrix.branch }}
       # fetch all commits instead of only the last as some branches are long lived and could have many between versions
@@ -119,7 +119,7 @@ jobs:
         with:
           cache-image: false
       - name: Setup Blacksmith Builder
-        uses: useblacksmith/setup-docker-builder@v1
+        uses: useblacksmith/setup-docker-builder@8fbda8108100092be0ef3320da0a93fbb8f47d7f # v1.14.0
       - name: Get cleaned branch name
         id: clean_name
         env:
@@ -164,7 +164,7 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: build regular docker image
-        uses: useblacksmith/build-push-action@v2 # v7.4.0
+        uses: useblacksmith/build-push-action@9b0579bbec7a6cad2f171596c57e7ac1e7658850 # v2.3.0
         with:
           context: .
           platforms: linux/amd64,linux/arm64,linux/riscv64
@@ -172,7 +172,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           annotations: ${{ steps.meta.outputs.annotations }}
       - name: build rootless docker image
-        uses: useblacksmith/build-push-action@v2 # v7.4.0
+        uses: useblacksmith/build-push-action@9b0579bbec7a6cad2f171596c57e7ac1e7658850 # v2.3.0
         with:
           context: .
           platforms: linux/amd64,linux/arm64,linux/riscv64
@@ -192,7 +192,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
         with:
           ref: main
           fetch-depth: 0

@@ -33,7 +33,7 @@ jobs:
   gobuild:
     runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - run: make deps-backend deps-tools
       - run: TAGS="bindata" make backend
@@ -55,7 +55,7 @@ jobs:
         include:
           - { tags: "bindata", target: "lint-backend" }
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
         with:
           lint-cache: "true"
@@ -71,14 +71,14 @@ jobs:
   frontend:
     runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/node-setup
       - run: make deps-frontend
 
   python:
     runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: useblacksmith/checkout@v1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/python-setup
       - run: make deps-py
 
