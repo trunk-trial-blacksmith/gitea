@@ -31,7 +31,7 @@ permissions:
 
 jobs:
   detect:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     timeout-minutes: 3
     outputs:
       backend: ${{ steps.changes.outputs.backend }}
@@ -46,7 +46,7 @@ jobs:
       e2e: ${{ steps.changes.outputs.e2e }}
       shell: ${{ steps.changes.outputs.shell }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
         id: changes
         with:

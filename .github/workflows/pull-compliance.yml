@@ -18,9 +18,9 @@ jobs:
   lint-backend:
     if: needs.files-changed.outputs.backend == 'true' || needs.files-changed.outputs.actions == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
         with:
           lint-cache: "true"
@@ -30,9 +30,9 @@ jobs:
   lint-on-demand:
     if: needs.files-changed.outputs.templates == 'true' || needs.files-changed.outputs.yaml == 'true' || needs.files-changed.outputs.actions == 'true' || needs.files-changed.outputs.docs == 'true' || needs.files-changed.outputs.swagger == 'true' || needs.files-changed.outputs.json == 'true' || needs.files-changed.outputs.shell == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
         with:
           cache: "false"
@@ -57,9 +57,9 @@ jobs:
   checks-backend:
     if: needs.files-changed.outputs.backend == 'true' || needs.files-changed.outputs.actions == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - run: make deps-backend deps-tools
       - run: make --always-make checks-backend # ensure the "go-licenses" make target runs
@@ -67,9 +67,9 @@ jobs:
   frontend:
     if: needs.files-changed.outputs.frontend == 'true' || needs.files-changed.outputs.actions == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/node-setup
       - run: make deps-frontend
       - run: make lint-frontend
@@ -81,9 +81,9 @@ jobs:
   backend:
     if: needs.files-changed.outputs.backend == 'true' || needs.files-changed.outputs.actions == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - run: make deps-backend generate-go
       # no frontend build here as backend should be able to build, even without any frontend files

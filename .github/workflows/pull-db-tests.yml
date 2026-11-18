@@ -18,7 +18,7 @@ jobs:
   test-pgsql-shard-1:
     if: needs.files-changed.outputs.backend == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     timeout-minutes: 50
     services:
       pgsql:
@@ -45,7 +45,7 @@ jobs:
         ports:
           - "9000:9000"
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - uses: ./.github/actions/pgsql-shard
         with:
@@ -56,7 +56,7 @@ jobs:
   test-pgsql-shard-2:
     if: needs.files-changed.outputs.backend == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     timeout-minutes: 50
     services:
       pgsql:
@@ -83,7 +83,7 @@ jobs:
         ports:
           - "9000:9000"
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - uses: ./.github/actions/pgsql-shard
         with:
@@ -93,9 +93,9 @@ jobs:
   test-sqlite:
     if: needs.files-changed.outputs.backend == 'true' || needs.files-changed.outputs.actions == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - run: make deps-backend
       - run: make backend
@@ -115,7 +115,7 @@ jobs:
   test-unit:
     if: needs.files-changed.outputs.backend == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     services:
       elasticsearch:
         image: elasticsearch:8.19.23@sha256:ef5cafd961d7e273f13fed8def82e63c5ae0491106b5eecb5a69aa12d64f089b
@@ -154,7 +154,7 @@ jobs:
         ports:
           - 10000:10000
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - name: Add hosts to /etc/hosts
         run: '[ -e "/.dockerenv" ] || [ -e "/run/.containerenv" ] || echo "127.0.0.1 minio devstoreaccount1.azurite.local mysql elasticsearch meilisearch smtpimap" | sudo tee -a /etc/hosts'
@@ -173,7 +173,7 @@ jobs:
   test-mysql:
     if: needs.files-changed.outputs.backend == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     services:
       mysql:
         # the bitnami mysql image has more options than the official one, it's easier to customize
@@ -203,7 +203,7 @@ jobs:
           - "587:587"
           - "993:993"
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - name: Add hosts to /etc/hosts
         run: '[ -e "/.dockerenv" ] || [ -e "/run/.containerenv" ] || echo "127.0.0.1 mysql elasticsearch smtpimap" | sudo tee -a /etc/hosts'
@@ -220,7 +220,7 @@ jobs:
   test-mssql:
     if: needs.files-changed.outputs.backend == 'true'
     needs: files-changed
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     services:
       mssql:
         image: mcr.microsoft.com/mssql/server:2019-latest@sha256:debdc21628cddd1a4433371c601c8dee9bad3533ae8b18fe9dc8c5596368b10d
@@ -235,7 +235,7 @@ jobs:
         ports:
           - 10000:10000
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
       - uses: ./.github/actions/go-setup
       - name: Add hosts to /etc/hosts
         run: '[ -e "/.dockerenv" ] || [ -e "/run/.containerenv" ] || echo "127.0.0.1 mssql devstoreaccount1.azurite.local" | sudo tee -a /etc/hosts'

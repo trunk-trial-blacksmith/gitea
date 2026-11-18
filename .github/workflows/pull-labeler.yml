@@ -14,7 +14,7 @@ permissions: {}
 
 jobs:
   labeler:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     permissions:
       contents: read
       pull-requests: write
@@ -25,14 +25,14 @@ jobs:
 
   pr-title:
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     timeout-minutes: 5
     permissions:
       contents: read
       pull-requests: write
     steps:
       # Base-branch checkout only: pull_request_target runs with elevated token; never run PR-head code here.
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@75c49b6ed30ce59336e9252425796cfcfac155f8 # v1.8.3
         with:
           ref: ${{ github.event.pull_request.base.sha }}
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
