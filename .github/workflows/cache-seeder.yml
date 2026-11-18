@@ -31,9 +31,9 @@ permissions:
 
 jobs:
   gobuild:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@v1 # v7
       - uses: ./.github/actions/go-setup
       - run: make deps-backend deps-tools
       - run: TAGS="bindata" make backend
@@ -48,14 +48,14 @@ jobs:
           TAGS="bindata" GOTEST_FLAGS="-race" make test-integration-compile
 
   lint:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     strategy:
       fail-fast: false
       matrix:
         include:
           - { tags: "bindata", target: "lint-backend" }
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@v1 # v7
       - uses: ./.github/actions/go-setup
         with:
           lint-cache: "true"
@@ -69,16 +69,16 @@ jobs:
           TARGET: ${{ matrix.target }}
 
   frontend:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@v1 # v7
       - uses: ./.github/actions/node-setup
       - run: make deps-frontend
 
   python:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2604
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: useblacksmith/checkout@v1 # v7
       - uses: ./.github/actions/python-setup
       - run: make deps-py
 
